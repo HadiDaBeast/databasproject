@@ -16,6 +16,14 @@ begin
 end;
 // DELIMITER ;
 
-call add_student('123456789123', 'hadi', 'PAAMJ22h');
+drop procedure if exists remove_student;
 
-SELECT * from students;
+DELIMITER // 
+CREATE procedure remove_student(in personnumber varchar(20)) 
+begin 
+	delete from students where students.person_nr = personnumber;
+end;
+
+// DELIMITER ;
+
+select * from students;

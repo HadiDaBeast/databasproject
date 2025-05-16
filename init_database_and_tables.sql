@@ -23,9 +23,8 @@ create table courses (
     );
 create table registrations (
 	person_nr varchar(12), 
-	course_code varchar(50), 
+	course_code varchar(20), 
 	completed_hp_course int, 
-	course_type varchar(20),
 	foreign key (person_nr) references students(person_nr), 
 	foreign key (course_code) references courses(course_code)
     );
