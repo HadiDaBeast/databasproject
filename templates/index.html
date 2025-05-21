@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+<link rel= "stylesheet" type= "text/css" href= "../static/styles/index.css">
+</head>
+<body>
+    <div class="NameContainer">
+        <div>Alla kurser</div>
+        <div>Kommer in</div>
+        <div>Spärrad</div>
+    </div>
+    <div class="container">
+        <div id="All">
+            <div class="course">
+                Hej
+            </div>
+            <div class="course">
+                Hej
+            </div><div class="course">
+                Hej
+            </div><div class="course">
+                Hej
+            </div><div class="course">
+                Hej
+            </div><div class="course">
+                Hej
+            </div><div class="course">
+                Hej
+            </div><div class="course">
+                Hej
+            </div><div class="course">
+                Hej
+            </div><div class="course">
+                Hej
+            </div>
+        </div>
+        <div id="KomIn">
+
+        </div>
+        <div id="Sparr">
+
+        </div>
+    </div>
+    <div class="buttons">
+        <button class="open-modal" type="submit" data-target="modal_add_student" name="action" value="add_student">Add student</button>
+        <button class="open-modal" type="submit" data-target="modal_remove_student" name="action" value="remove_student">Remove student</button>
+        <button class="open-modal" type="submit" data-target="modal_update_student_hp" name="action" value="update_student_hp">Update student HP</button>
+        <button class="open-modal" type="submit" data-target="modal_get_student" name="action" value="get_student">Get student</button>
+        <button class="open-modal" type="submit" data-target="modal_add_course" name="action" value="add_course">Add course</button>
+        <button class="open-modal" type="submit" data-target="modal_remove_course" name="action" value="remove_course">Remove course</button>
+        <button class="open-modal" type="submit" data-target="modal_update_course_code" name="action" value="update_course_code">Update course code</button>
+        <button class="open-modal" type="submit" data-target="modal_update_course_hp" name="action" value="update_course_hp">Update course HP</button>
+        <button class="open-modal" type="submit" data-target="modal_update_course_type" name="action" value="update_course_type">Update course type</button>
+        <button class="open-modal" type="submit" data-target="modal_update_course_requirements" name="action" value="update_course_requirements">Update course requirements</button>
+    </div>
+
+    <div id="modal_add_student" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <input type="text" placeholder="Name" name="" id="">
+            <input type="text" placeholder="Personnumber" name="" id="">
+            <input type="text" placeholder="Program" name="" id="">
+            <form method="post" action="/add_student">
+                <button>Add</button>
+            </form>
+        </div>
+    </div>
+
+    <div id="modal_remove_student" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <input type="text" placeholder="Personnumber" name="" id="">
+            <form method="post" action="/remove_student">
+                <button>Remove</button>
+            </form>
+        </div>
+    </div>
+    <div id="modal_update_student_hp" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <input type="text" placeholder="Course" name="" id="">
+            <input type="text" placeholder="HP" name="" id="">
+            <form method="post" action="/update_student_hp">
+                <button>Update</button>
+            </form>
+        </div>
+    </div>
+    <div id="modal_get_student" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <input type="text" placeholder="Personnumber" name="" id="">
+            <form method="post" action="/get_student">
+                <button>Get</button>
+            </form>
+        </div>
+    </div>
+    <div id="modal_add_course" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <input type="text" placeholder="Course code" name="" id="">
+            <input type="text" placeholder="HP" name="" id="">
+            <input type="text" placeholder="Type" name="" id="">
+            <input type="text" placeholder="Requirements" name="" id="">
+            <form method="post" action="/add_course">
+                <button>Add</button>
+            </form>
+        </div>
+    </div>
+    <div id="modal_remove_course" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <input type="text" placeholder="Course code" name="" id="">
+            <form method="post" action="/remove_course">
+                <button>Remove</button>
+            </form>
+        </div>
+    </div>
+    <div id="modal_update_course_code" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <input type="text" placeholder="Course code" name="" id="">
+            <input type="text" placeholder="New course code" name="" id="">
+            <form method="post" action="/update_course_code">
+                <button>Update</button>
+            </form>
+        </div>
+    </div>
+    <div id="modal_update_course_hp" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <input type="text" placeholder="Course code" name="" id="">
+            <input type="text" placeholder="New HP" name="" id="">
+            <form method="post" action="/update_course_hp">
+                <button>Update</button>
+            </form>
+        </div>
+    </div>
+    <div id="modal_update_course_type" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <input type="text" placeholder="Course code" name="" id="">
+            <input type="text" placeholder="New type" name="" id="">
+            <form method="post" action="/update_course_type">
+                <button>Update</button>
+            </form>
+        </div>
+    </div>
+    <div id="modal_update_course_requirements" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <input type="text" placeholder="Course code" name="" id="">
+            <input type="text" placeholder="New requirements" name="" id="">
+            <form method="post" action="/update_course_requirements">
+                <button>Update</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+    document.querySelectorAll('.open-modal').forEach(button => {
+        button.addEventListener('click', () => {
+            console.log('Button clicked');
+            const targetId = button.getAttribute('data-target');
+            const modal = document.getElementById(targetId);
+            if (modal) modal.style.display = 'block';
+        });
+    });
+
+    document.querySelectorAll('.close').forEach(span => {
+        span.addEventListener('click', () => {
+            const modal = span.closest('.modal');
+            if (modal) modal.style.display = 'none';
+        });
+    });
+
+    </script>
+</body>
+</html>

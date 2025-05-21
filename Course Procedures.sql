@@ -1,4 +1,4 @@
-use course_overview;
+-- use course_overview;
 drop procedure if exists add_course;
 drop procedure if exists remove_course;
 
