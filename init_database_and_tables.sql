@@ -9,6 +9,7 @@ use course_overview;
 drop table if exists students;
 drop table if exists courses;
 drop table if exists registrations;
+drop table if exists requirements;
 
 create table students (
 	person_nr varchar(12) primary key,
@@ -32,6 +33,6 @@ create table registrations (
 create table requirements (
 	course_code varchar(20),
     course_required_hp int,
-    type varchar(20),
+    type varchar(255),
     foreign key (course_code) references courses(course_code)
 );
