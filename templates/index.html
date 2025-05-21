@@ -7,63 +7,54 @@
 <link rel= "stylesheet" type= "text/css" href= "../static/styles/index.css">
 </head>
 <body>
+    <div>Curent chosen student:</div>
+    <div id="current"></div>
     <div class="NameContainer">
-        <div>Alla kurser</div>
+        <div>Registrerad på</div>
         <div>Kommer in</div>
         <div>Spärrad</div>
     </div>
     <div class="container">
         <div id="All">
-            <div class="course">
-                Hej
-            </div>
-            <div class="course">
-                Hej
-            </div><div class="course">
-                Hej
-            </div><div class="course">
-                Hej
-            </div><div class="course">
-                Hej
-            </div><div class="course">
-                Hej
-            </div><div class="course">
-                Hej
-            </div><div class="course">
-                Hej
-            </div><div class="course">
-                Hej
-            </div><div class="course">
-                Hej
-            </div>
+            {% for item in Registered %}
+                <div class= "course">{{item}}</div>
+            {% endfor %}
         </div>
         <div id="KomIn">
-
+            {% for item in Possible %}
+                <div class= "course"></div>
+            {% endfor %}
         </div>
         <div id="Sparr">
-
+            {% for item in Sparrad %}
+                <div class= "course"></div>
+            {% endfor %}
         </div>
     </div>
     <div class="buttons">
         <button class="open-modal" type="submit" data-target="modal_add_student" name="action" value="add_student">Add student</button>
         <button class="open-modal" type="submit" data-target="modal_remove_student" name="action" value="remove_student">Remove student</button>
         <button class="open-modal" type="submit" data-target="modal_update_student_hp" name="action" value="update_student_hp">Update student HP</button>
-        <button class="open-modal" type="submit" data-target="modal_get_student" name="action" value="get_student">Get student</button>
+        <button class="open-modal" type="submit" data-target="modal_update_student_name" name="action" value="update_student_name">Update student name</button>
+        <button class="open-modal" type="submit" data-target="modal_update_student_program" name="action" value="update_student_program">Update student program</button>
+        <button class="open-modal" type="submit" data-target="modal_update_student_personnumber" name="action" value="update_student_personnumber">Update student personnumber</button>
+        <button class="open-modal" type="submit" data-target="modal_get_student" name="action" value="get_student">Select student</button>
         <button class="open-modal" type="submit" data-target="modal_add_course" name="action" value="add_course">Add course</button>
         <button class="open-modal" type="submit" data-target="modal_remove_course" name="action" value="remove_course">Remove course</button>
         <button class="open-modal" type="submit" data-target="modal_update_course_code" name="action" value="update_course_code">Update course code</button>
         <button class="open-modal" type="submit" data-target="modal_update_course_hp" name="action" value="update_course_hp">Update course HP</button>
         <button class="open-modal" type="submit" data-target="modal_update_course_type" name="action" value="update_course_type">Update course type</button>
         <button class="open-modal" type="submit" data-target="modal_update_course_requirements" name="action" value="update_course_requirements">Update course requirements</button>
+        <button class="open-modal" type="submit" data-target="modal_add_registrations" name="action" value="add_registrations">Add registrations</button>
     </div>
 
     <div id="modal_add_student" class="modal">
         <div class="modal-content">
             <span class="close">&times;</span>
-            <input type="text" placeholder="Name" name="" id="">
-            <input type="text" placeholder="Personnumber" name="" id="">
-            <input type="text" placeholder="Program" name="" id="">
             <form method="post" action="/add_student">
+                <input type="text" placeholder="Name" name="name" id="">
+                <input type="text" placeholder="Personnumber" name="pid" id="">
+                <input type="text" placeholder="Program" name="prgm" id="">
                 <button>Add</button>
             </form>
         </div>
@@ -72,8 +63,8 @@
     <div id="modal_remove_student" class="modal">
         <div class="modal-content">
             <span class="close">&times;</span>
-            <input type="text" placeholder="Personnumber" name="" id="">
             <form method="post" action="/remove_student">
+            <input type="text" placeholder="Personnumber" name="pid" id="">
                 <button>Remove</button>
             </form>
         </div>
@@ -81,9 +72,39 @@
     <div id="modal_update_student_hp" class="modal">
         <div class="modal-content">
             <span class="close">&times;</span>
-            <input type="text" placeholder="Course" name="" id="">
-            <input type="text" placeholder="HP" name="" id="">
             <form method="post" action="/update_student_hp">
+                <input type="text" placeholder="Personnumber" name="pid" id="">
+                <input type="text" placeholder="HP" name="hp" id="">
+                <button>Update</button>
+            </form>
+        </div>
+    </div>
+    <div id="modal_update_student_program" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <form method="post" action="/update_student_program">
+                <input type="text" placeholder="Personnumber" name="pid" id="">
+                <input type="text" placeholder="Program" name="prgm" id="">
+                <button>Update</button>
+            </form>
+        </div>
+    </div>
+    <div id="modal_update_student_name" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <form method="post" action="/update_student_name">
+                <input type="text" placeholder="Personnumber" name="pid" id="">
+                <input type="text" placeholder="Name" name="name" id="">
+                <button>Update</button>
+            </form>
+        </div>
+    </div>
+    <div id="modal_update_student_personnumber" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <form method="post" action="/update_student_personnumber">
+                <input type="text" placeholder="Personnumber" name="pid" id="">
+                <input type="text" placeholder="New personnumber" name="newpid" id="">
                 <button>Update</button>
             </form>
         </div>
@@ -91,8 +112,8 @@
     <div id="modal_get_student" class="modal">
         <div class="modal-content">
             <span class="close">&times;</span>
-            <input type="text" placeholder="Personnumber" name="" id="">
-            <form method="post" action="/get_student">
+            <form method="GET" action="/get_student">
+                <input type="text" name="pid" placeholder="Personnumber">
                 <button>Get</button>
             </form>
         </div>
@@ -154,6 +175,16 @@
             <input type="text" placeholder="Course code" name="" id="">
             <input type="text" placeholder="New requirements" name="" id="">
             <form method="post" action="/update_course_requirements">
+                <button>Update</button>
+            </form>
+        </div>
+    </div>
+    <div id="modal_add_registrations" class="modal">
+        <div class="modal-content">
+            <form method="post" action="/add_registrations">
+                <span class="close">&times;</span>
+                <input type="text" placeholder="Personnumber" name="pid" id="">
+                <input type="text" placeholder="Course code" name="course" id="">
                 <button>Update</button>
             </form>
         </div>

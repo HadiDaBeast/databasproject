@@ -41,3 +41,4 @@ create procedure update_registrations_hp(in personnumber varchar(12), in code va
 end//
 
 DELIMITER ;
+

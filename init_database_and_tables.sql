@@ -35,3 +35,4 @@ create table requirements (
     type varchar(20),
     foreign key (course_code) references courses(course_code)
 );
+
