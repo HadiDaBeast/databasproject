@@ -1,5 +1,6 @@
 
 -- init students
+use course_overview;
 
 CALL add_student('0205189000', 'Gustav Nyman', 'PAAMJ22h');
 CALL add_student('9910248778', 'Markus Nyman', 'PAAMJ22h');
@@ -11,5 +12,3 @@ CALL add_student('9902130000', 'Maria Olsson', 'PAAMJ22h');
 CALL add_student('0212041111', 'Kalle Johansson', 'PAAMJ22h');
 CALL add_student('0208100110', 'Stina Björk', 'PAAMJ22h');
 CALL add_student('9403131111', 'Fatima Light', 'PAAMJ22h');
-
-select * from students;

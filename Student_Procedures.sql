@@ -2,6 +2,12 @@
 
 use course_overview;
 drop procedure if exists add_student;
+drop procedure if exists update_student_program;
+drop procedure if exists get_student;
+drop procedure if exists update_student_hp;
+drop procedure if exists remove_student;
+drop procedure if exists update_student_name;
+drop procedure if exists update_student_personnumber;
 
 DELIMITER //
 CREATE procedure add_student(in personnumber varchar(12), in name varchar(50), in program varchar(20))
@@ -13,17 +19,54 @@ begin
         (personnumber, name, program, 0);
     end if;
     
-end;
-// DELIMITER ;
+end//
 
-drop procedure if exists remove_student;
 
-DELIMITER // 
-CREATE procedure remove_student(in personnumber varchar(20)) 
+CREATE procedure remove_student(in personnumber varchar(12)) 
 begin 
 	delete from students where students.person_nr = personnumber;
-end;
+end//
 
-// DELIMITER ;
+ 
+create procedure get_student(in personnumber varchar(12), out per_nr varchar(12), out name varchar(50), out prog varchar(20), out completed int)
+begin
+	select person_nr, student_name, program, completed_hp into per_nr, name, prog, completed from students where personnumber = students.person_nr;
+end//
 
-select * from students;
+
+create procedure update_student_hp (in personnumber varchar(12), in hp int) 
+begin 
+	declare exist int;
+    select count(*) into exist from students where students.person_nr = personnumber;
+    if exist > 0 then
+		update students set completed_hp = hp where students.person_nr = personnumber;
+    end if;
+end//
+
+
+create procedure update_student_program (in personnumber varchar(12), in prog varchar(20)) 
+begin 
+	declare exist int;
+    select count(*) into exist from students where students.person_nr = personnumber;
+    if exist > 0 then
+		update students set program = prog where students.person_nr = personnumber;
+    end if;
+end//
+
+create procedure update_student_name (in personnumber varchar(12), in name varchar(50)) 
+begin 
+	declare exist int;
+    select count(*) into exist from students where students.person_nr = personnumber;
+    if exist > 0 then
+		update students set student_name = name where students.person_nr = personnumber;
+    end if;
+end//
+
+create procedure update_student_personnumber (in personnumber varchar(12), in new_personnumber varchar(12)) 
+begin 
+	declare exist int;
+    select count(*) into exist from students where students.person_nr = personnumber;
+    if exist > 0 then
+		update students set person_nr = new_personnumber where students.person_nr = personnumber;
+    end if;
+end // DELIMITER ;
