@@ -18,9 +18,8 @@ create table students (
     );
 create table courses (
 	course_code varchar(20) primary key, 
-    course_hp varchar(20),
-    course_type varchar(20),
-    requirements varchar(20)
+    course_hp int,
+    course_type varchar(20)
     );
 create table registrations (
 	person_nr varchar(12), 
@@ -29,3 +28,10 @@ create table registrations (
 	foreign key (person_nr) references students(person_nr), 
 	foreign key (course_code) references courses(course_code)
     );
+    
+create table requirements (
+	course_code varchar(20),
+    course_required_hp int,
+    type varchar(20),
+    foreign key (course_code) references courses(course_code)
+);

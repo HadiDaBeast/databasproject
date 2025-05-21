@@ -1,0 +1,53 @@
+-- init courses
+use course_overview;
+
+call add_course('DV1574', 6, '0CW');
+call add_course('MA1486', 4, 'LX');
+call add_course('PA1461', 8, '5T');
+call add_course('MA1448', 6, 'KX');
+call add_course('DV1626', 6, '16CW');
+call add_course('PA1473', 6, '345');
+call add_course('PA1472', 6, '248');
+call add_course('MA1444', 6, 'OX');
+call add_course('MA1494', 6, 'PX');
+call add_course('DV1625', 6, '6BC');
+call add_course('DV1493', 6, 'CE');
+call add_course('MA1446', 6, 'NX');
+call add_course('MA1447', 6, 'QX');
+call add_course('DV1629', 6, 'CDFG');
+call add_course('IY1402', 6, 'U');
+call add_course('FY1431', 6, 'S');
+call add_course('PA1475', 8, '3458AC');
+call add_course('PA1463', 6, '39');
+call add_course('PA1465', 6, '35C');
+call add_course('PA1466', 4, 'Y');
+call add_course('DV2619', 6, 'CIV');
+call add_course('PA1454', 6, '2457');
+call add_course('MS1405', 6, 'MX');
+call add_course('DV2606', 6, 'CFGVZ');
+call add_course('TE1423', 6, 'R');
+call add_course('DV1655', 6, 'CE');
+call add_course('DV1601', 6, '4');
+call add_course('PA1467', 2, '4T');
+call add_course('DV1663', 6, 'CFHJ');
+call add_course('PA1468', 4, '5');
+call add_course('FY1430', 6, 'S');
+call add_course('IY1431', 7.5, '3');
+call add_course('PA2567', 15, '234568AFGV');
+call add_course('PA1469', 7.5, '345FG');
+call add_course('PA2557', 7.5, '345V');
+call add_course('DV2626', 7.5, 'CJV');
+call add_course('PA2554', 7.5, 'TV');
+call add_course('PA2562', 7.5, 'CV');
+call add_course('PA2571', 7.5, 'TV');
+call add_course('ET2636', 7.5, 'V');
+call add_course('PA2570', 7.5, 'TV');
+call add_course('PA2572', 7.5, '34CFGJV');
+call add_course('PA2613', 7.5, '345CFGV');
+call add_course('PA2558', 7.5, '345V');
+call add_course('PA2577', 7.5, 'CFGV');
+call add_course('IY1459', 7.5, 'U');
+call add_course('IY1430', 7.5, 'TU');
+call add_course('TE2502', 30, '2345789BEFRV');
+
+
