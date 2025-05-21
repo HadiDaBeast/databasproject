@@ -36,3 +36,4 @@ create table requirements (
     type varchar(255),
     foreign key (course_code) references courses(course_code)
 );
+
