@@ -32,7 +32,7 @@ def get_registered_courses():
     if personnumber:
         student_name = personnumber
         cur.execute("SELECT * FROM registrations WHERE person_nr = %s", (personnumber,))
-        result = [x[1] for x in cur.fetchall()]
+        result = [(x[1], x[2]) for x in cur.fetchall()]
     return render_template('index.html', current_name = student_name, Registered=result)
         
 @app.route('/add_student', methods=['post'])
@@ -103,6 +103,8 @@ def add_registrations():
     course = request.form.get("course")
     cur.callproc("add_registrations", (personnumber, course))
     cnx.commit()
+    cur.execute("SELECT * FROM registrations WHERE person_nr = %s", (student_name,))
+    result = [(x[1], x[2]) for x in cur.fetchall()]
     return render_template('index.html', current_name = student_name, Registered=result)
 
 @app.route('/update_registrations_hp', methods=['POST'])
@@ -114,6 +116,8 @@ def update_registrations_hp():
     hp = request.form.get("hp")
     cur.callproc("update_registrations_hp", (personnumber, course, hp))
     cnx.commit()
+    cur.execute("SELECT * FROM registrations WHERE person_nr = %s", (student_name,))
+    result = [(x[1], x[2]) for x in cur.fetchall()]
     return render_template('index.html', current_name = student_name, Registered=result)
 
 @app.route('/remove_registrations', methods=['POST'])
@@ -124,6 +128,8 @@ def remove_registrations():
     course = request.form.get("course")
     cur.callproc("remove_registrations", (personnumber, course))
     cnx.commit()
+    cur.execute("SELECT * FROM registrations WHERE person_nr = %s", (student_name,))
+    result = [(x[1], x[2]) for x in cur.fetchall()]
     return render_template('index.html', current_name = student_name, Registered=result)
 
 if __name__ == '__main__':

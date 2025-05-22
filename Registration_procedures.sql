@@ -23,20 +23,25 @@ end//
 
 create procedure remove_registrations(in personnumber varchar(12),in code varchar(20)) 
 begin 
-	declare registration_exsits int;
-    select count(*) into registration_exsits from students where students.person_nr = personnumber and courses.course_code = code;
+	declare registration_exists int;
+    declare course_exists int;
+    select count(*) into course_exists from courses where courses.course_code = code;
+    select count(*) into registration_exists from students where students.person_nr = personnumber;
     
-    if  registration_exsits > 0 then
-		delete from registrations where students.person_nr = personnumber and courses.course_code = code;
+    if  registration_exists > 0 then
+		delete from registrations where person_nr = personnumber and course_code = code;
     end if;
 end//
 
-create procedure update_registrations_hp(in personnumber varchar(12), in code varchar(20), in hp int) begin 
-	declare registration_exsits int;
-    select count(*) into registration_exsits from students where students.person_nr = personnumber and courses.course_code = code;
+create procedure update_registrations_hp(in personnumber varchar(12), in code varchar(20), in hp int) 
+begin 
+	declare registration_exists int;
+    declare course_exists int;
+	select count(*) into course_exists from courses where courses.course_code = code;
+    select count(*) into registration_exists from students where students.person_nr = personnumber;
     
     if registration_exists > 0 then 
-		update registrations set registrations.completed_hp_course = hp where students.person_nr = personnumber and courses.course_code = code;
+		update registrations set registrations.completed_hp_course = hp where person_nr = personnumber and course_code = code;
     end if;
 end//
 
