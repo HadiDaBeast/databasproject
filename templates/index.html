@@ -17,7 +17,7 @@
     <div class="container">
         <div id="All">
             {% for item in Registered %}
-                <div class= "course">{{item[0]}}, {{item[1]}}</div>
+                <div class= "course">{{item[0]}}, {{item[1]}} / {{item[2]}}</div>
             {% endfor %}
         </div>
         <div id="KomIn">
@@ -123,10 +123,9 @@
     <div id="modal_add_course" class="modal">
         <div class="modal-content">
             <span class="close">&times;</span>
-            <input type="text" placeholder="Course code" name="" id="">
-            <input type="text" placeholder="HP" name="" id="">
-            <input type="text" placeholder="Type" name="" id="">
-            <input type="text" placeholder="Requirements" name="" id="">
+            <input type="text" placeholder="Course code" name="course" id="">
+            <input type="text" placeholder="HP" name="hp" id="">
+            <input type="text" placeholder="Type" name="type" id="">
             <form method="post" action="/add_course">
                 <button>Add</button>
             </form>
@@ -144,8 +143,8 @@
     <div id="modal_update_course_code" class="modal">
         <div class="modal-content">
             <span class="close">&times;</span>
-            <input type="text" placeholder="Course code" name="" id="">
-            <input type="text" placeholder="New course code" name="" id="">
+            <input type="text" placeholder="Course code" name="course" id="">
+            <input type="text" placeholder="New course code" name="new" id="">
             <form method="post" action="/update_course_code">
                 <button>Update</button>
             </form>
@@ -154,8 +153,8 @@
     <div id="modal_update_course_hp" class="modal">
         <div class="modal-content">
             <span class="close">&times;</span>
-            <input type="text" placeholder="Course code" name="" id="">
-            <input type="text" placeholder="New HP" name="" id="">
+            <input type="text" placeholder="Course code" name="course" id="">
+            <input type="text" placeholder="New HP" name="hp" id="">
             <form method="post" action="/update_course_hp">
                 <button>Update</button>
             </form>
@@ -164,8 +163,8 @@
     <div id="modal_update_course_type" class="modal">
         <div class="modal-content">
             <span class="close">&times;</span>
-            <input type="text" placeholder="Course code" name="" id="">
-            <input type="text" placeholder="New type" name="" id="">
+            <input type="text" placeholder="Course code" name="course" id="">
+            <input type="text" placeholder="New type" name="type" id="">
             <form method="post" action="/update_course_type">
                 <button>Update</button>
             </form>
