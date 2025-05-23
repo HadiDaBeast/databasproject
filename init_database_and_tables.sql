@@ -6,25 +6,26 @@ Create database course_overview;
 
 use course_overview;
 
-drop table if exists students;
-drop table if exists courses;
 drop table if exists registrations;
 drop table if exists requirements;
+drop table if exists students;
+drop table if exists courses;
+
 
 create table students (
 	person_nr varchar(12) primary key,
     student_name varchar(50),
     program varchar(20),
-    Zero int,
-    One int,
-    Two int,
-    Three int,
-    Four int,
-    Five int,
-    Six int,
-    Seven int,
-    Eight int,
-    Nine int,
+    `0` int,
+    `1` int,
+    `2` int,
+    `3` int,
+    `4` int,
+    `5` int,
+    `6` int,
+    `7` int,
+    `8` int,
+    `9` int,
     A INT,
     B INT,
     C INT,

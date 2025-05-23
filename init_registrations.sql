@@ -1,3 +1,6 @@
 use course_overview;
 
-CALL loop_through_chars('hello123');
+
+
+select * from registrations;
+select * from students;

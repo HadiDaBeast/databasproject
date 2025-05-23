@@ -15,8 +15,44 @@ begin
 	declare present int;
 	select count(person_nr) into present from students where students.person_nr = personnumber;
     if present = 0 then
-		insert into students (person_nr, student_name, program, completed_hp) values
-        (personnumber, name, program, 0);
+		insert into students (person_nr, student_name, program,
+		Zero,
+		One,
+		Two,
+		Three,
+		Four,
+		Five,
+		Six,
+		Seven,
+		Eight,
+		Nine,
+		A,
+		B,
+		C,
+		D, 
+		E, 
+		F,
+		G,
+		H,
+		I ,
+		J,
+		K,
+		L,
+		M,
+		N,
+		O,
+		P,
+		Q,
+		R,
+		S,
+		T,
+		U,
+		V,
+		W,
+		X,
+		Y,
+		Z) values
+        (personnumber, name, program, NULL ,NULL ,NULL ,NULL ,NULL ,NULL ,NULL ,NULL ,NULL ,NULL ,NULL ,NULL ,NULL ,NULL ,NULL ,NULL ,NULL ,NULL ,NULL ,NULL ,NULL ,NULL ,NULL ,NULL ,NULL ,NULL ,NULL ,NULL ,NULL ,NULL ,NULL ,NULL ,NULL ,NULL ,NULL ,NULL); 
     end if;
     
 end//
@@ -28,21 +64,10 @@ begin
 end//
 
  
-create procedure get_student(in personnumber varchar(12), out per_nr varchar(12), out name varchar(50), out prog varchar(20), out completed int)
+create procedure get_student(in personnumber varchar(12), out per_nr varchar(12))
 begin
-	select person_nr, student_name, program, completed_hp into per_nr, name, prog, completed from students where personnumber = students.person_nr;
+	select person_nr into per_nr from students where personnumber = students.person_nr;
 end//
-
-
-create procedure update_student_hp (in personnumber varchar(12), in hp int) 
-begin 
-	declare exist int;
-    select count(*) into exist from students where students.person_nr = personnumber;
-    if exist > 0 then
-		update students set completed_hp = hp where students.person_nr = personnumber;
-    end if;
-end//
-
 
 create procedure update_student_program (in personnumber varchar(12), in prog varchar(20)) 
 begin 
