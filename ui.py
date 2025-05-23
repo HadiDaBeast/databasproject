@@ -141,13 +141,11 @@ def remove_registrations():
     cur.callproc("remove_registrations", (personnumber, course))
     cnx.commit()
     cur.execute("SELECT * FROM registrations WHERE person_nr = %s", (student_name,))
-    result = [[x[1], x[2]] for x in cur.fetchall()]
-    
+    result = [[x[1], x[2], 0] for x in cur.fetchall()]
     for i in result:
         cur.execute("SELECT course_hp FROM courses WHERE course_code = %s", (i[0],))
         course = cur.fetchall()
-        print(course)
-        i[2] = course[0]
+        i[2] = course[0][0]
         
     return render_template('index.html', current_name = student_name, Registered=result)
 
@@ -204,3 +202,5 @@ def update_course_type():
 
 if __name__ == '__main__':
    app.run(debug=True) 
+   
+            

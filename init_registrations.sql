@@ -1,3 +1,3 @@
 use course_overview;
 
-call add_course("TestKurs", 69, "LOL");
+CALL loop_through_chars('hello123');
