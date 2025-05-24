@@ -7,6 +7,7 @@ drop procedure if exists remove_registrations;
 drop procedure if exists update_registrations_hp;
 drop trigger if exists new_reg;
 drop trigger if exists update_hp;
+drop function if exists check_eligibility;
 
 
 DELIMITER // 
@@ -35,7 +36,7 @@ begin
     end if;
 end//
 
-create procedure update_registrations_hp(in personnumber varchar(12), in code varchar(20), in hp int) 
+create procedure update_registrations_hp(in personnumber varchar(12), in code varchar(20), in hp float) 
 begin 
 	declare registration_exists int;
     declare course_exists int;
@@ -149,7 +150,7 @@ begin
 	declare types1 varchar(50);
 	declare counter int;
     declare current_type varchar(50);
-    declare total_hp int;
+    declare total_hp float;
 	set counter = 0;
 
 	select course_type into types1 from courses inner join registrations on courses.course_code = registrations.course_code where registrations.person_nr = new.person_nr and registrations.course_code = new.course_code;
@@ -238,7 +239,288 @@ begin
 
 end//
 
-create function check_eligibilty (course_code varchar(20), personnumber varchar(50))
-
+create function check_eligibility(code varchar(20), personnumber varchar(12)) returns int 
+deterministic
+begin 
+	declare eligible int;
+    declare i int;
+    declare j int;
+    declare len int;
+    declare hp float;
+    declare current_type varchar(50);
+    declare current_char varchar(1);
+    declare current_hp float;
+	declare sum_hp float;
+    select count(*) into len from courses inner join requirements on courses.course_code = requirements.course_code where courses.course_code = code;
+    set i = 0;
+    set j = 0;
+    while i<len do
+		select type into current_type from courses inner join requirements on courses.course_code = requirements.course_code where courses.course_code = code limit 1 offset i;
+		select course_required_hp into hp from courses inner join requirements on courses.course_code = requirements.course_code where courses.course_code = code limit 1 offset i;
+			while j < length(current_type) do
+				select substring(current_type, j, 1) into current_char;
+					if current_char = '0' then
+						select Zero into current_hp from students where person_nr = personnumber;
+                        if current_hp is not null then
+							set sum_hp = sum_hp + current_hp;
+                        else
+							return 0;
+						end if;
+					elseif current_char = '1' then
+						select One into current_hp from students where person_nr = personnumber;
+                        if current_hp is not null then
+							set sum_hp = sum_hp + current_hp;
+                        else
+							return 0;
+						end if;
+					elseif current_char = '2' then
+						select Two into current_hp from students where person_nr = personnumber;
+                        if current_hp is not null then
+							set sum_hp = sum_hp + current_hp;
+                        else
+							return 0;
+						end if;
+					elseif current_char = '3' then
+						select Three into current_hp from students where person_nr = personnumber;
+                        if current_hp is not null then
+							set sum_hp = sum_hp + current_hp;
+                        else
+							return 0;
+						end if;
+					elseif current_char = '4' then
+						select Four into current_hp from students where person_nr = personnumber;
+                        if current_hp is not null then
+							set sum_hp = sum_hp + current_hp;
+                        else
+							return 0;
+						end if;
+					elseif current_char = '5' then
+						select Five into current_hp from students where person_nr = personnumber;
+                        if current_hp is not null then
+							set sum_hp = sum_hp + current_hp;
+                        else
+							return 0;
+						end if;
+					elseif current_char = '6' then
+						select Six into current_hp from students where person_nr = personnumber;
+                        if current_hp is not null then
+							set sum_hp = sum_hp + current_hp;
+                        else
+							return 0;
+						end if;
+					elseif current_char = '7' then
+						select Seven into current_hp from students where person_nr = personnumber;
+                        if current_hp is not null then
+							set sum_hp = sum_hp + current_hp;
+                        else
+							return 0;
+						end if;
+					elseif current_char = '8' then
+						select Eight into current_hp from students where person_nr = personnumber;
+                        if current_hp is not null then
+							set sum_hp = sum_hp + current_hp;
+                        else
+							return 0;
+						end if;
+					elseif current_char = '9' then
+						select Nine into current_hp from students where person_nr = personnumber;
+                        if current_hp is not null then
+							set sum_hp = sum_hp + current_hp;
+                        else
+							return 0;
+						end if;
+					elseif current_char = 'A' then
+						select A into current_hp from students where person_nr = personnumber;
+                        if current_hp is not null then
+							set sum_hp = sum_hp + current_hp;
+                        else
+							return 0;
+						end if;
+					elseif current_char = 'B' then
+						select B into current_hp from students where person_nr = personnumber;
+                        if current_hp is not null then
+							set sum_hp = sum_hp + current_hp;
+                        else
+							return 0;
+						end if; 
+					elseif current_char = 'C' then
+						select C into current_hp from students where person_nr = personnumber;
+                        if current_hp is not null then
+							set sum_hp = sum_hp + current_hp;
+                        else
+							return 0;
+						end if;
+					elseif current_char = 'D' then
+						select D into current_hp from students where person_nr = personnumber;
+                        if current_hp is not null then
+							set sum_hp = sum_hp + current_hp;
+                        else
+							return 0;
+						end if;
+					elseif current_char = 'E' then
+						select E into current_hp from students where person_nr = personnumber;
+                        if current_hp is not null then
+							set sum_hp = sum_hp + current_hp;
+                        else
+							return 0;
+						end if;
+					elseif current_char = 'F' then
+						select F into current_hp from students where person_nr = personnumber;
+                        if current_hp is not null then
+							set sum_hp = sum_hp + current_hp;
+                        else
+							return 0;
+						end if;
+					elseif current_char = 'G' then
+						select G into current_hp from students where person_nr = personnumber;
+                        if current_hp is not null then
+							set sum_hp = sum_hp + current_hp;
+                        else
+							return 0;
+						end if;
+					elseif current_char = 'H' then
+						select H into current_hp from students where person_nr = personnumber;
+                        if current_hp is not null then
+							set sum_hp = sum_hp + current_hp;
+                        else
+							return 0;
+						end if;
+					elseif current_char = 'I' then
+						select I into current_hp from students where person_nr = personnumber;
+                        if current_hp is not null then
+							set sum_hp = sum_hp + current_hp;
+                        else
+							return 0;
+						end if;
+					elseif current_char = 'J' then
+						select J into current_hp from students where person_nr = personnumber;
+                        if current_hp is not null then
+							set sum_hp = sum_hp + current_hp;
+                        else
+							return 0;
+						end if;
+					elseif current_char = 'K' then
+						select K into current_hp from students where person_nr = personnumber;
+                        if current_hp is not null then
+							set sum_hp = sum_hp + current_hp;
+                        else
+							return 0;
+						end if;
+					elseif current_char = 'L' then
+						select L into current_hp from students where person_nr = personnumber;
+                        if current_hp is not null then
+							set sum_hp = sum_hp + current_hp;
+                        else
+							return 0;
+						end if;
+					elseif current_char = 'M' then
+						select M into current_hp from students where person_nr = personnumber;
+                        if current_hp is not null then
+							set sum_hp = sum_hp + current_hp;
+                        else
+							return 0;
+						end if;
+					elseif current_char = 'N' then
+						select N into current_hp from students where person_nr = personnumber;
+                        if current_hp is not null then
+							set sum_hp = sum_hp + current_hp;
+                        else
+							return 0;
+						end if;
+					elseif current_char = 'O' then
+						select O into current_hp from students where person_nr = personnumber;
+                        if current_hp is not null then
+							set sum_hp = sum_hp + current_hp;
+                        else
+							return 0;
+						end if;
+					elseif current_char = 'P' then
+						select P into current_hp from students where person_nr = personnumber;
+                        if current_hp is not null then
+							set sum_hp = sum_hp + current_hp;
+                        else
+							return 0;
+						end if;
+					elseif current_char = 'Q' then
+						select Q into current_hp from students where person_nr = personnumber;
+                        if current_hp is not null then
+							set sum_hp = sum_hp + current_hp;
+                        else
+							return 0;
+						end if;
+					elseif current_char = 'R' then
+						select R into current_hp from students where person_nr = personnumber;
+                        if current_hp is not null then
+							set sum_hp = sum_hp + current_hp;
+                        else
+							return 0;
+						end if;
+					elseif current_char = 'S' then
+						select S into current_hp from students where person_nr = personnumber;
+                        if current_hp is not null then
+							set sum_hp = sum_hp + current_hp;
+                        else
+							return 0;
+						end if;
+					elseif current_char = 'T' then
+						select T into current_hp from students where person_nr = personnumber;
+                        if current_hp is not null then
+							set sum_hp = sum_hp + current_hp;
+                        else
+							return 0;
+						end if;
+					elseif current_char = 'U' then
+						select U into current_hp from students where person_nr = personnumber;
+                        if current_hp is not null then
+							set sum_hp = sum_hp + current_hp;
+                        else
+							return 0;
+						end if;
+					elseif current_char = 'V' then
+						select V into current_hp from students where person_nr = personnumber;
+                        if current_hp is not null then
+							set sum_hp = sum_hp + current_hp;
+                        else
+							return 0;
+						end if;
+					elseif current_char = 'W' then
+						select W into current_hp from students where person_nr = personnumber;
+                        if current_hp is not null then
+							set sum_hp = sum_hp + current_hp;
+                        else
+							return 0;
+						end if;
+					elseif current_char = 'X' then
+						select X into current_hp from students where person_nr = personnumber;
+                        if current_hp is not null then
+							set sum_hp = sum_hp + current_hp;
+                        else
+							return 0;
+						end if;
+					elseif current_char = 'Y' then
+						select Y into current_hp from students where person_nr = personnumber;
+                        if current_hp is not null then
+							set sum_hp = sum_hp + current_hp;
+                        else
+							return 0;
+						end if;
+					elseif current_char = 'Z' then
+						select Z into current_hp from students where person_nr = personnumber;
+                        if current_hp is not null then
+							set sum_hp = sum_hp + current_hp;
+                        else
+							return 0;
+						end if;
+					END IF;
+            Set j = j + 1;
+            end while;
+            if sum_hp < hp then
+             return 0;
+			end if;
+        set i = i + 1;
+    end while;
+    return 1;
+    
+end//
 
 DELIMITER ;

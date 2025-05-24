@@ -7,7 +7,7 @@ drop procedure if exists remove_requirements;
 
 DELIMITER // 
 
-create procedure add_requirements (in code varchar(20), in hp int, in required varchar(255))
+create procedure add_requirements (in code varchar(20), in hp float, in required varchar(255))
 begin 
 	declare exist int;
     select count(*) into exist from requirements where requirements.course_code = code and requirements.type = required;
@@ -20,12 +20,6 @@ end//
 create procedure remove_requirements (in code varchar(20), in required varchar(255)) 
 begin 
 	delete from requirements where requirements.course_code = code and requirements.type = required;
-end//
-
-create function check_eligibility(code varchar(20), required varchar(255), personnumber varchar(12)) returns int 
-begin 
-	declare eligible int;
-    select * from courses inner join requirements on course_code = code;
 end//
 
 DELIMITER ;

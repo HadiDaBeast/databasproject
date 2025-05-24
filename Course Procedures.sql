@@ -8,7 +8,7 @@ drop procedure if exists update_course_type;
 drop procedure if exists update_course_requirements;
 
 DELIMITER //
-CREATE procedure add_course(in code varchar(20), in hp int, in type varchar(20))
+CREATE procedure add_course(in code varchar(20), in hp float, in type varchar(20))
 begin 
 	declare present int;
 	select count(course_code) into present from courses where courses.course_code = code;
@@ -24,7 +24,7 @@ begin
 	delete from courses where courses.course_code = code;
 end //
 
-CREATE procedure get_course(in code varchar(20), out get_course_code varchar(20), out hp int, out type varchar(20))
+CREATE procedure get_course(in code varchar(20), out get_course_code varchar(20), out hp float, out type varchar(20))
 begin 
 	select course_code, course_hp, course_type into get_course_code, hp, type from courses where courses.course_code = code;
 end //
@@ -38,7 +38,7 @@ begin
     end if;
 end//
 
-create procedure update_course_hp (in code varchar(20), in hp int) 
+create procedure update_course_hp (in code varchar(20), in hp float) 
 begin 
 	declare exist int;
     select count(*) into exist from courses where courses.course_code = code;
