@@ -237,5 +237,6 @@ begin
 
 end//
 
+create function check_eligibilty (course_code varchar(20), personnumber varchar(50))
 
 DELIMITER ;

@@ -22,4 +22,10 @@ begin
 	delete from requirements where requirements.course_code = code and requirements.type = required;
 end//
 
+create function check_eligibility(code varchar(20), required varchar(255), personnumber varchar(12)) returns int 
+begin 
+	declare eligible int;
+    select * from courses inner join requirements on course_code = code;
+end//
+
 DELIMITER ;
