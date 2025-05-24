@@ -6,6 +6,7 @@ drop procedure if exists add_registrations;
 drop procedure if exists remove_registrations;
 drop procedure if exists update_registrations_hp;
 drop trigger if exists new_reg;
+drop trigger if exists update_hp;
 
 
 DELIMITER // 
@@ -56,7 +57,7 @@ begin
     declare len int;
 	set counter = 0;
 
-	select course_type into types1 from courses inner join registrations on courses.course_code = registrations.course_code where registrations.person_nr = new.person_nr;
+	select course_type into types1 from courses inner join registrations on courses.course_code = registrations.course_code where registrations.person_nr = new.person_nr and registrations.course_code = new.course_code;
 	While counter <= length(types1) DO
 
 		select substring(types1, counter, 1) into current_type;
@@ -141,94 +142,94 @@ begin
 
 end//
 
-create trigger Update_hp_reg after update on registrations
+CREATe trigger update_hp after update on registrations
 for each row
-begin 
+begin
+
 	declare types1 varchar(50);
 	declare counter int;
     declare current_type varchar(50);
-    declare completed_hp int;
+    declare total_hp int;
 	set counter = 0;
 
-	select course_type into types1 from courses inner join registrations on courses.course_code = registrations.course_code where registrations.person_nr = new.person_nr;
-    select completed_hp_course into completed_hp from courses inner join registrations on courses.course_code = registrations.course_code where registrations.person_nr = new.person_nr;
-    
+	select course_type into types1 from courses inner join registrations on courses.course_code = registrations.course_code where registrations.person_nr = new.person_nr and registrations.course_code = new.course_code;
+    select completed_hp_course into total_hp from courses inner join registrations on courses.course_code = registrations.course_code where registrations.person_nr = new.person_nr and registrations.course_code = new.course_code;
 	While counter <= length(types1) DO
 
 		select substring(types1, counter, 1) into current_type;
         Set SQL_SAFE_UPDATES = 0;
 		if current_type = '0' then
-			update students set Zero = 0 where person_nr = new.person_nr;
+			update students set Zero = Zero + total_hp where person_nr = new.person_nr;
 		elseif current_type = '1' then
-			update students set One = 0 where person_nr = new.person_nr;
+			update students set One = One + total_hp where person_nr = new.person_nr;
 		elseif current_type = '2' then
-			update students set Two = 0 where person_nr = new.person_nr; 
+			update students set Two = Two + total_hp where person_nr = new.person_nr; 
 		elseif current_type = '3' then
-			update students set Three = 0 where person_nr = new.person_nr;
+			update students set Three = Three + total_hp where person_nr = new.person_nr;
 		elseif current_type = '4' then
-			update students set Four = 0 where person_nr = new.person_nr;
+			update students set Four = Four + total_hp where person_nr = new.person_nr;
 		elseif current_type = '5' then
-			update students set Five = 0 where person_nr = new.person_nr;
+			update students set Five = Five + total_hp where person_nr = new.person_nr;
 		elseif current_type = '6' then
-			update students set Six = 0 where person_nr = new.person_nr;
+			update students set Six = Six + total_hp where person_nr = new.person_nr;
 		elseif current_type = '7' then
-			update students set Seven = 0 where person_nr = new.person_nr;
+			update students set Seven = Seven + total_hp where person_nr = new.person_nr;
 		elseif current_type = '8' then
-			update students set Eight = 0 where person_nr = new.person_nr;
+			update students set Eight = Eight + total_hp where person_nr = new.person_nr;
 		elseif current_type = '9' then
-			update students set Nine = 0 where person_nr = new.person_nr; 
+			update students set Nine = Nine + total_hp where person_nr = new.person_nr; 
 		elseif current_type = 'A' then
-			update students set A = 0 where person_nr = new.person_nr; 
+			update students set A = A + total_hp where person_nr = new.person_nr; 
 		elseif current_type = 'B' then
-			update students set B = 0 where person_nr = new.person_nr; 
+			update students set B = B + total_hp where person_nr = new.person_nr; 
 		elseif current_type = 'C' then
-			update students set C = 0 where person_nr = new.person_nr;
+			update students set C = C + total_hp where person_nr = new.person_nr;
 		elseif current_type = 'D' then
-			update students set D = 0 where person_nr = new.person_nr; 
+			update students set D = D + total_hp where person_nr = new.person_nr; 
 		elseif current_type = 'E' then
-			update students set E = 0 where person_nr = new.person_nr;
+			update students set E = E + total_hp where person_nr = new.person_nr;
 		elseif current_type = 'F' then
-			update students set F = 0 where person_nr = new.person_nr;
+			update students set F = F + total_hp where person_nr = new.person_nr;
 		elseif current_type = 'G' then
-			update students set G = 0 where person_nr = new.person_nr;
+			update students set G = G + total_hp where person_nr = new.person_nr;
 		elseif current_type = 'H' then
-			update students set H = 0 where person_nr = new.person_nr;
+			update students set H = H + total_hp where person_nr = new.person_nr;
 		elseif current_type = 'I' then
-			update students set I = 0 where person_nr = new.person_nr;
+			update students set I = I + total_hp where person_nr = new.person_nr;
 		elseif current_type = 'J' then
-			update students set J = 0 where person_nr = new.person_nr; 
+			update students set J = J + total_hp where person_nr = new.person_nr; 
 		elseif current_type = 'K' then
-			update students set K = 0 where person_nr = new.person_nr; 
+			update students set K = K + total_hp where person_nr = new.person_nr; 
 		elseif current_type = 'L' then
-			update students set L = 0 where person_nr = new.person_nr;
+			update students set L = L + total_hp where person_nr = new.person_nr;
 		elseif current_type = 'M' then
-			update students set M = 0 where person_nr = new.person_nr;
+			update students set M = M + total_hp where person_nr = new.person_nr;
 		elseif current_type = 'N' then
-			update students set N = 0 where person_nr = new.person_nr;
+			update students set N = N + total_hp where person_nr = new.person_nr;
 		elseif current_type = 'O' then
-			update students set O = 0 where person_nr = new.person_nr;
+			update students set O = O + total_hp where person_nr = new.person_nr;
 		elseif current_type = 'P' then
-			update students set P = 0 where person_nr = new.person_nr;
+			update students set P = P + total_hp where person_nr = new.person_nr;
 		elseif current_type = 'Q' then
-			update students set Q = 0 where person_nr = new.person_nr; 
+			update students set Q = Q + total_hp where person_nr = new.person_nr; 
 		elseif current_type = 'R' then
-			update students set R = 0 where person_nr = new.person_nr;
+			update students set R = R + total_hp where person_nr = new.person_nr;
 		elseif current_type = 'S' then
-			update students set S = 0 where person_nr = new.person_nr;
+			update students set S = S + total_hp where person_nr = new.person_nr;
 		elseif current_type = 'T' then
-			update students set T = 0 where person_nr = new.person_nr;
+			update students set T = T + total_hp where person_nr = new.person_nr;
 		elseif current_type = 'U' then
-			update students set U = 0 where person_nr = new.person_nr;
+			update students set U = U + total_hp where person_nr = new.person_nr;
 		elseif current_type = 'V' then
-			update students set V = 0 where person_nr = new.person_nr;
+			update students set V = V + total_hp where person_nr = new.person_nr;
 		elseif current_type = 'W' then
-			update students set W = 0 where person_nr = new.person_nr;
+			update students set W = W + total_hp where person_nr = new.person_nr;
 		elseif current_type = 'X' then
-			update students set X = 0 where person_nr = new.person_nr;
+			update students set X = X + total_hp where person_nr = new.person_nr;
 		elseif current_type = 'Y' then
-			update students set Y = 0 where person_nr = new.person_nr;
+			update students set Y = Y + total_hp where person_nr = new.person_nr;
 		elseif current_type = 'Z' then
-			update students set Z = 0 where person_nr = new.person_nr; 
+			update students set Z = Z + total_hp where person_nr = new.person_nr; 
 		END IF;
         
 		Set SQL_SAFE_UPDATES = 1;
@@ -236,6 +237,7 @@ begin
 	END while;
 
 end//
+
 
 
 DELIMITER ;
