@@ -254,9 +254,9 @@ begin
     select count(*) into len from courses inner join requirements on courses.course_code = requirements.course_code where courses.course_code = code;
     set i = 0;
     set j = 1;
+    set sum_hp = 0;
     while i<len do
-		select type into current_type from courses inner join requirements on courses.course_code = requirements.course_code where courses.course_code = code limit 1 offset i;
-		select course_required_hp into hp from courses inner join requirements on courses.course_code = requirements.course_code where courses.course_code = code limit 1 offset i;
+		select type, course_required_hp into current_type, hp from courses inner join requirements on courses.course_code = requirements.course_code where courses.course_code = code limit 1 offset i;
 			while j-1 < length(current_type) do
 				select substring(current_type, j, 1) into current_char;
 					if current_char = '0' then
