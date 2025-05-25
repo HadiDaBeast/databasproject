@@ -9,6 +9,7 @@
 <body>
     <div>Curent chosen student:</div>
     <div id="current">{{current_name}}</div>
+    <div id="errorDiv" style="color: red;">{{error}}</div>
     <div class="NameContainer">
         <div>Registrerad på</div>
         <div>Kommer in</div>
@@ -22,12 +23,12 @@
         </div>
         <div id="KomIn">
             {% for item in Possible %}
-                <div class= "course"></div>
+                <div class= "course">{{item}}</div>
             {% endfor %}
         </div>
         <div id="Sparr">
             {% for item in Sparrad %}
-                <div class= "course"></div>
+                <div class= "course">{{item}}</div>
             {% endfor %}
         </div>
     </div>
