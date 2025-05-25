@@ -1,9 +1,10 @@
 use course_overview;
 
-select * from registrations inner join requirements on registrations.course_code = requirements.course_code;
+#call add_registrations('0205189000', 'DV1574');
+#call update_registrations_hp('0205189000', 'DV1625', 6);
+#call add_registrations('0205189000', 'DV1625');
 
-select check_eligibility('DV1493', '0205189000');
-
+select * from registrations;
 select * from students;
 
 
