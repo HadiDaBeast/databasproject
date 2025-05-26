@@ -7,7 +7,7 @@ use course_overview;
 select check_eligibility('PA2572', '9902130000');
 
 select * from registrations;
-select * from students where person_nr = "9902130000";
+select * from students;
 
 select* from requirements where course_code = 'PA2554';
 

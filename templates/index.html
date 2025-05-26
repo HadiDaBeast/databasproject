@@ -17,19 +17,25 @@
     </div>
     <div class="container">
         <div id="All">
-            {% for item in Registered %}
-                <div class= "course">{{item[0]}}, {{item[1]}} / {{item[2]}}</div>
-            {% endfor %}
+            {%if Registered is not none%}
+                {% for item in Registered %}
+                    <div class= "course">{{item[0]}}, {{item[1]}} / {{item[2]}}</div>
+                {% endfor %}
+            {%endif%}            
         </div>
         <div id="KomIn">
-            {% for item in Possible %}
-                <div class= "course">{{item}}</div>
-            {% endfor %}
+            {%if Possible is not none%}
+                {% for item in Possible %}
+                    <div class= "course">{{item}}</div>
+                {% endfor %}
+            {%endif%}
         </div>
         <div id="Sparr">
-            {% for item in Sparrad %}
-                <div class= "course">{{item}}</div>
-            {% endfor %}
+            {%if Sparrad is not none%}
+                {% for item in Sparrad %}
+                    <div class= "course">{{item}}</div>
+                {% endfor %}
+            {%endif%}
         </div>
     </div>
     <div class="buttons">

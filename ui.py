@@ -45,7 +45,6 @@ def get_registered_courses():
             i[2] = course[0][0]
         cur.execute("SELECT * FROM courses WHERE check_eligibility(courses.course_code, %s) = 1", (student_name,))
         KommerIn = [x[0] for x in cur.fetchall() if x[0] not in [i[0] for i in result]]
-        print(KommerIn)
         cnx.commit()
         cur.execute("SELECT * FROM courses WHERE check_eligibility(courses.course_code, %s) = 0", (student_name,))
         Sparris = [x[0] for x in cur.fetchall() if x[0] not in [i[0] for i in result]]
@@ -84,9 +83,15 @@ def remove_student():
     personnumber = request.form.get("pid")
     if not personnumber:
         error = "Please enter a valid person number."
-        return render_template('index.html', current_name = student_name, Registered=result, error="", Possible=KommerIn, Sparrad=Sparris)
-    cur.callproc("remove_student", (personnumber))
+        return render_template('index.html', current_name = student_name, Registered=result, error=error, Possible=KommerIn, Sparrad=Sparris)
+    cur.callproc("remove_student", (personnumber,))
     cnx.commit()
+    if student_name == personnumber:
+        student_name = ""
+        result = None
+        error = None
+        KommerIn = None
+        Sparris = None
     return render_template('index.html', current_name = student_name, Registered=result, error="", Possible=KommerIn, Sparrad=Sparris)
 
 @app.route('/update_student_hp', methods=['POST'])
