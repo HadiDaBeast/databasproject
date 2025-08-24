@@ -15,44 +15,7 @@ begin
 	declare present int;
 	select count(person_nr) into present from students where students.person_nr = personnumber;
     if present = 0 then
-		insert into students (person_nr, student_name, program,
-		Zero,
-		One,
-		Two,
-		Three,
-		Four,
-		Five,
-		Six,
-		Seven,
-		Eight,
-		Nine,
-		A,
-		B,
-		C,
-		D, 
-		E, 
-		F,
-		G,
-		H,
-		I ,
-		J,
-		K,
-		L,
-		M,
-		N,
-		O,
-		P,
-		Q,
-		R,
-		S,
-		T,
-		U,
-		V,
-		W,
-		X,
-		Y,
-		Z) values
-        (personnumber, name, program, NULL ,NULL ,NULL ,NULL ,NULL ,NULL ,NULL ,NULL ,NULL ,NULL ,NULL ,NULL ,NULL ,NULL ,NULL ,NULL ,NULL ,NULL ,NULL ,NULL ,NULL ,NULL ,NULL ,NULL ,NULL ,NULL ,NULL ,NULL ,NULL ,NULL ,NULL ,NULL ,NULL ,NULL ,NULL ,NULL); 
+		insert into students (person_nr, student_name, program) values (personnumber, name, program); 
     end if;
     
 end//

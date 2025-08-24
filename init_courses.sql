@@ -6,6 +6,8 @@ call add_course('MA1486', 4, 'LX');
 call add_course('PA1461', 8, '5T');
 call add_course('MA1448', 6, 'KX');
 call add_course('DV1626', 6, '17CW');
+call add_course('PA1473', 6, '345');
+call add_course('PA1472', 6, '248');
 call add_course('PA1473', 6, '345C');
 call add_course('PA1472', 6, '248C');
 call add_course('MA1444', 6, 'OX');

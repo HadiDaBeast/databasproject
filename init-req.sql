@@ -34,7 +34,6 @@ call add_requirements('DV2606', 12, 'W');
 call add_requirements('DV2606', 6, 'B');
 call add_requirements('DV2606', 6, 'DE');
 call add_requirements('PA1467', 6, '3');
-call add_requirements('PA1467', 0, 'R');
 call add_requirements('DV1655', 18, 'WB');
 call add_requirements('DV1601', 6, '5C');
 call add_requirements('FY1430', 6, 'S');
