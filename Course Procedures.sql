@@ -21,6 +21,8 @@ end//
 
 CREATE procedure remove_course(in code varchar(20))
 begin 
+	delete from requirements where requirements.course_code = code;
+    delete from registrations where registrations.course_code = code;
 	delete from courses where courses.course_code = code;
 end //
 
