@@ -8,7 +8,7 @@
 </head>
 <body>
     <div>Curent chosen student:</div>
-    <div id="current">{{current_name}}</div>
+    <div id="current">{{current_name}}, {{current_real_name}}</div>
     <div id="errorDiv" style="color: red;">{{error}}</div>
     <div class="NameContainer">
         <div>Registrerad på</div>
@@ -41,9 +41,7 @@
     <div class="buttons">
         <button class="open-modal" type="submit" data-target="modal_add_student" name="action" value="add_student">Add student</button>
         <button class="open-modal" type="submit" data-target="modal_remove_student" name="action" value="remove_student">Remove student</button>
-        <button class="open-modal" type="submit" data-target="modal_update_student_hp" name="action" value="update_student_hp">Update student HP</button>
         <button class="open-modal" type="submit" data-target="modal_update_student_name" name="action" value="update_student_name">Update student name</button>
-        <button class="open-modal" type="submit" data-target="modal_update_student_program" name="action" value="update_student_program">Update student program</button>
         <button class="open-modal" type="submit" data-target="modal_update_student_personnumber" name="action" value="update_student_personnumber">Update student personnumber</button>
         <button class="open-modal" type="submit" data-target="modal_get_student" name="action" value="get_student">Select student</button>
         <button class="open-modal" type="submit" data-target="modal_add_course" style="background-color: blueviolet;" name="action" value="add_course">Add course</button>
@@ -63,7 +61,6 @@
             <form method="post" action="/add_student">
                 <input type="text" placeholder="Name" name="name" id="">
                 <input type="text" placeholder="Personnumber" name="pid" id="">
-                <input type="text" placeholder="Program" name="prgm" id="">
                 <button>Add</button>
             </form>
         </div>
@@ -78,26 +75,8 @@
             </form>
         </div>
     </div>
-    <div id="modal_update_student_hp" class="modal">
-        <div class="modal-content">
-            <span class="close">&times;</span>
-            <form method="post" action="/update_student_hp">
-                <input type="text" value="{{ current_name }}" placeholder="Personnumber" name="pid" id="">
-                <input type="text" placeholder="HP" name="hp" id="">
-                <button>Update</button>
-            </form>
-        </div>
-    </div>
-    <div id="modal_update_student_program" class="modal">
-        <div class="modal-content">
-            <span class="close">&times;</span>
-            <form method="post" action="/update_student_program">
-                <input type="text" value="{{ current_name }}" placeholder="Personnumber" name="pid" id="">
-                <input type="text" placeholder="Program" name="prgm" id="">
-                <button>Update</button>
-            </form>
-        </div>
-    </div>
+    
+    
     <div id="modal_update_student_name" class="modal">
         <div class="modal-content">
             <span class="close">&times;</span>
@@ -129,60 +108,61 @@
     </div>
     <div id="modal_add_course" class="modal">
         <div class="modal-content">
-            <span class="close">&times;</span>
-            <input type="text" placeholder="Course code" name="course" id="">
-            <input type="text" placeholder="HP" name="hp" id="">
-            <input type="text" placeholder="Type" name="type" id="">
             <form method="post" action="/add_course">
+                <span class="close">&times;</span>
+                <input type="text" placeholder="Course code" name="course" id="">
+                <input type="text" placeholder="HP" name="hp" id="">
+                <input type="text" placeholder="Type" name="type" id="">
                 <button>Add</button>
             </form>
         </div>
     </div>
     <div id="modal_remove_course" class="modal">
         <div class="modal-content">
-            <span class="close">&times;</span>
-            <input type="text" placeholder="Course code" name="" id="">
             <form method="post" action="/remove_course">
+            <span class="close">&times;</span>
+            <input type="text" placeholder="Course code" name="course" id="">
                 <button>Remove</button>
             </form>
         </div>
     </div>
     <div id="modal_update_course_code" class="modal">
         <div class="modal-content">
+            <form method="post" action="/update_course_code">
             <span class="close">&times;</span>
             <input type="text" placeholder="Course code" name="course" id="">
             <input type="text" placeholder="New course code" name="new" id="">
-            <form method="post" action="/update_course_code">
                 <button>Update</button>
             </form>
         </div>
     </div>
     <div id="modal_update_course_hp" class="modal">
         <div class="modal-content">
+            <form method="post" action="/update_course_hp">
             <span class="close">&times;</span>
             <input type="text" placeholder="Course code" name="course" id="">
             <input type="text" placeholder="New HP" name="hp" id="">
-            <form method="post" action="/update_course_hp">
                 <button>Update</button>
             </form>
         </div>
     </div>
     <div id="modal_update_course_type" class="modal">
         <div class="modal-content">
+            <form method="post" action="/update_course_type">  
             <span class="close">&times;</span>
             <input type="text" placeholder="Course code" name="course" id="">
             <input type="text" placeholder="New type" name="type" id="">
-            <form method="post" action="/update_course_type">
                 <button>Update</button>
             </form>
         </div>
     </div>
     <div id="modal_update_course_requirements" class="modal">
         <div class="modal-content">
-            <span class="close">&times;</span>
-            <input type="text" placeholder="Course code" name="" id="">
-            <input type="text" placeholder="New requirements" name="" id="">
             <form method="post" action="/update_course_requirements">
+            <span class="close">&times;</span>
+            <input type="text" placeholder="Course code" name="course" id="">
+            <input type="text" placeholder="New requirement" name="requirement" id="">
+            <input type="text" placeholder="required HP" name="hp" id="">
                 <button>Update</button>
             </form>
         </div>
