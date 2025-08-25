@@ -6,7 +6,6 @@ drop procedure if exists add_registrations;
 drop procedure if exists remove_registrations;
 drop procedure if exists update_registrations_hp;
 drop function if exists eli;
-drop function if exists check_eligibility;
 
 DELIMITER // 
 create procedure add_registrations(in personnumber varchar(12),in code varchar(20)) 

@@ -14,8 +14,7 @@ drop table if exists courses;
 
 create table students (
 	person_nr varchar(12) primary key,
-    student_name varchar(50),
-    program varchar(20)
+    student_name varchar(50)
     );
 create table courses (
 	course_code varchar(20) primary key, 

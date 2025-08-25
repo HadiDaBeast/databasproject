@@ -11,6 +11,5 @@ select * from students;
 
 select* from requirements where course_code = 'PA2554';
 
-
-
-
+select * from courses where courses.course_code = 'bruh';
+select * from requirements where requirements.course_code = 'bruh';
