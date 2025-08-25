@@ -43,10 +43,10 @@ def get_registered_courses():
             cur.execute("SELECT course_hp FROM courses WHERE course_code = %s", (i[0],))
             course = cur.fetchall()
             i[2] = course[0][0]
-        cur.execute("SELECT * FROM courses WHERE check_eligibility(courses.course_code, %s) = 1", (student_name,))
+        cur.execute("SELECT * FROM courses WHERE eli(courses.course_code, %s) = 1", (student_name,))
         KommerIn = [x[0] for x in cur.fetchall() if x[0] not in [i[0] for i in result]]
         cnx.commit()
-        cur.execute("SELECT * FROM courses WHERE check_eligibility(courses.course_code, %s) = 0", (student_name,))
+        cur.execute("SELECT * FROM courses WHERE eli(courses.course_code, %s) = 0", (student_name,))
         Sparris = [x[0] for x in cur.fetchall() if x[0] not in [i[0] for i in result]]
         print(Sparris)
         cnx.commit()
@@ -170,6 +170,10 @@ def add_registrations():
         error = "Please enter a valid person number."
         return render_template('index.html', current_name = student_name, Registered=result, error="", Possible=KommerIn, Sparrad=Sparris)
     course = request.form.get("course")
+    #eli, på course. om det returnar 0 så är det en sparrad kurs
+    if (course in Sparris) and (course not in KommerIn):
+        error = "You cannot register for a sparrad course."
+        return render_template('index.html', current_name = student_name, Registered=result, error=error, Possible=KommerIn, Sparrad=Sparris)
     cur.callproc("add_registrations", (personnumber, course))
     cnx.commit()
     cur.execute("SELECT * FROM registrations WHERE person_nr = %s", (student_name,))
@@ -179,10 +183,10 @@ def add_registrations():
         course = cur.fetchall()
         i[2] = course[0][0]
     cnx.commit()
-    cur.execute("SELECT * FROM courses WHERE check_eligibility(courses.course_code, %s) = 1", (student_name,))
+    cur.execute("SELECT * FROM courses WHERE eli(courses.course_code, %s) = 1", (student_name,))
     KommerIn = [x[0] for x in cur.fetchall() if x[0] not in [i[0] for i in result]]
     cnx.commit()
-    cur.execute("SELECT * FROM courses WHERE check_eligibility(courses.course_code, %s) = 0", (student_name,))
+    cur.execute("SELECT * FROM courses WHERE eli(courses.course_code, %s) = 0", (student_name,))
     Sparris = [x[0] for x in cur.fetchall() if x[0] not in [i[0] for i in result]]
     cnx.commit()
     return render_template('index.html', current_name = student_name, Registered=result, error="", Possible=KommerIn, Sparrad=Sparris)
@@ -208,10 +212,10 @@ def update_registrations_hp():
         cur.execute("SELECT course_hp FROM courses WHERE course_code = %s", (i[0],))
         course = cur.fetchall()
         i[2] = course[0][0]
-    cur.execute("SELECT * FROM courses WHERE check_eligibility(courses.course_code, %s) = 1", (student_name,))
+    cur.execute("SELECT * FROM courses WHERE eli(courses.course_code, %s) = 1", (student_name,))
     KommerIn = [x[0] for x in cur.fetchall() if x[0] not in [i[0] for i in result]]
     cnx.commit()
-    cur.execute("SELECT * FROM courses WHERE check_eligibility(courses.course_code, %s) = 0", (student_name,))
+    cur.execute("SELECT * FROM courses WHERE eli(courses.course_code, %s) = 0", (student_name,))
     Sparris = [x[0] for x in cur.fetchall() if x[0] not in [i[0] for i in result]]
     cnx.commit()
     return render_template('index.html', current_name = student_name, Registered=result, error="", Possible=KommerIn, Sparrad=Sparris)
@@ -236,10 +240,10 @@ def remove_registrations():
         cur.execute("SELECT course_hp FROM courses WHERE course_code = %s", (i[0],))
         course = cur.fetchall()
         i[2] = course[0][0]
-    cur.execute("SELECT * FROM courses WHERE check_eligibility(courses.course_code, %s) = 1", (student_name,))
+    cur.execute("SELECT * FROM courses WHERE eli(courses.course_code, %s) = 1", (student_name,))
     KommerIn = [x[0] for x in cur.fetchall() if x[0] not in [i[0] for i in result]]
     cnx.commit()
-    cur.execute("SELECT * FROM courses WHERE check_eligibility(courses.course_code, %s) = 0", (student_name,))
+    cur.execute("SELECT * FROM courses WHERE eli(courses.course_code, %s) = 0", (student_name,))
     Sparris = [x[0] for x in cur.fetchall() if x[0] not in [i[0] for i in result]]
     cnx.commit()
     return render_template('index.html', current_name = student_name, Registered=result, error="", Possible=KommerIn, Sparrad=Sparris)
