@@ -26,11 +26,6 @@ begin
 	delete from courses where courses.course_code = code;
 end //
 
-CREATE procedure get_course(in code varchar(20), out get_course_code varchar(20), out hp float, out type varchar(20))
-begin 
-	select course_code, course_hp, course_type into get_course_code, hp, type from courses where courses.course_code = code;
-end //
-
 create procedure update_course_code (in code varchar(20), in new_code varchar(20)) 
 begin 
 	declare exist int;
